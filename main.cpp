@@ -9,7 +9,8 @@ struct struktura
     char c;
     float f;
 };
-
+//********************************************************************************************************
+// losowanie , alokowanie tablicy
 struct struktura** losowanie(int liczba_struktur)//konieczna poprawka
 {
         int los;
@@ -21,10 +22,15 @@ struct struktura** losowanie(int liczba_struktur)//konieczna poprawka
     for(int k=0; k<liczba_struktur; k++)
     {
         tablica_struktur[k]=new struct struktura;                     //drugi wymiar-tworzenie
+        if(!tablica_struktur[k])
+        {
+            std::cout<<"BŁĄD! Brak wystarczającej ilości pamięci!"<<std::endl;
+            return 0;
+        }
 
         do          //losowanie unikalnej liczby i wpisanie jej do zmiennej i w strukturze
         {
-            los=(rand()%10000);
+            los=(rand()%10001);
         }
         while(tabl_losowych[los]);
         tabl_losowych[los]=true;                   //zapamietanie wylosowania danej liczby
@@ -51,10 +57,10 @@ void kasowanie(struct struktura** tablica, int n)   //skonczona funkcja
 struct struktura** sortowanie(struct struktura**tablica, int n)//zrobione
 {
     //sortowwanie babelkowe inteligentne
-    for(int k=n-1; k>0; k--)            //mozna i tak: for(int k=0; k<=n-1; k++)
+    for(int k=0; k<n-1; k++)            //mozna i tak: for(int k=0; k<=n-1; k++)
     {
         int flag=1;
-        for(int m =0; m<k; m++)         //wtedy tutaj: for(int m=0; m<n-i-1; m++)
+        for(int m =0; m<n-k-1; m++)         //wtedy tutaj: for(int m=0; m<n-i-1; m++)
         {
             if(((tablica[m])->i)>((tablica[m+1])->i))
             {
@@ -125,6 +131,7 @@ kasowanie(p, rozmiar);
     //  czas stop.
     end = clock();
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+
 std::cout<<"Czas pracy programu: "<<time_spent<<std::endl;
 
 //*****************************************************************************************
