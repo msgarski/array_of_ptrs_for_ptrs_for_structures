@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1542051181 source:d:\uniwersytet 3-go wieku\testowanie\proba1\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+
